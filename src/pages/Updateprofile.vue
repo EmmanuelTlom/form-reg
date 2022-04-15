@@ -16,7 +16,7 @@
     <div class="error" v-if="inputErr">
       {{ inputErr }}
     </div>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" >
       <div class="input-wrap">
         <label class="text-primary" for="">Name</label> <br />
 
@@ -70,7 +70,7 @@
           <i class="ri-mail-line q-mr-md text-primary"></i>
 
           <input
-            
+
             type="email"
             v-model="form.city"
             placeholder="Enter your city"

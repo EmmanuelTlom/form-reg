@@ -25,7 +25,7 @@
           <label for="pass">passwordC</label>
           <input type="password" name="" id="pass" v-model="form.password_confirmation">
       </div>
-      
+
 
       <div class="input">
           <label for="phone">phone</label>
