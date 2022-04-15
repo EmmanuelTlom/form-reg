@@ -13,9 +13,11 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "quasar": "^2.0.0",
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.29",
     "vue-router": "^4.0.0",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@quasar/app": "^3.0.0"
