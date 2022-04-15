@@ -14,7 +14,7 @@
     <div class="group">
       <div class="left">
         <div class="text-red q-mb-sm">
-          <p class="text-primary q-mb-lg">
+          <p class="text-dark q-mb-lg">
             Kindly provide the email linked to your linkedin account for
             enroll-access for the next cohort
           </p>
@@ -63,7 +63,7 @@
             </div>
           </div> -->
 
-          <div class="button q-pt-xl text-center">
+          <div class="button q-py-xl q-mt-sm text-center">
             <q-btn type="submit" class="btn q-py-sm q-px-xl">Enroll</q-btn>
           </div>
         </form>
@@ -98,12 +98,13 @@ export default {
           this.form
         )
         .then((resp) => {
+          console.log(resp);
           localStorage.setItem(
             "userDetails",
             JSON.stringify(resp.data.payload)
           );
           this.$q.notify({
-            message: "User successfully created",
+            message: "User successfully created, complete you enrollment",
             color: "primary",
             position: "top",
           });
@@ -112,33 +113,41 @@ export default {
           console.log(resp);
         })
         .catch(({ response }) => {
+          console.log(response);
           if (response.data.error === "User Account Already Exists") {
-            axios
-              .get(
-                `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`
-              )
-              .then((resp) => {
-                console.log(resp);
-
-                // alert(resp);
-                localStorage.setItem(
-                  "userDetails",
-                  JSON.stringify(resp.data.payload)
-                );
-                this.$q.notify({
-                  message: "Fill in your profile",
-                  color: "primary",
-                  position: "top",
-                });
-                this.$router.replace("/update");
-              });
-          } else {
-            console.log(response);
-            this.inputErr = response.data.error;
-            setTimeout(() => {
-              this.inputErr = "";
-            }, 4000);
+            this.$q.notify({
+              message: response.data.error,
+              color: "secondary",
+              position: "top",
+            });
           }
+          // if (response.data.error === "User Account Already Exists") {
+          //   axios
+          //     .get(
+          //       `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`
+          //     )
+          //     .then((resp) => {
+          //       console.log(resp);
+
+          //       // alert(resp);
+          //       localStorage.setItem(
+          //         "userDetails",
+          //         JSON.stringify(resp.data.payload)
+          //       );
+          //       this.$q.notify({
+          //         message: "Fill in your profile",
+          //         color: "primary",
+          //         position: "top",
+          //       });
+          //       this.$router.replace("/update");
+          //     });
+          // } else {
+          //   console.log(response);
+          //   this.inputErr = response.data.error;
+          //   setTimeout(() => {
+          //     this.inputErr = "";
+          //   }, 4000);
+          // }
         });
       //   localStorage.setItem("userDetails", JSON.stringify(resp.data.payload));
 
@@ -166,7 +175,7 @@ p {
   font-size: 1rem;
 }
 input::placeholder {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.5;
 }
 
@@ -175,8 +184,8 @@ input::placeholder {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  height: 80vh;
-  /* padding-top: 5rem; */
+  height: 100%;
+  padding-top: 7rem;
   max-width: 800px;
 }
 

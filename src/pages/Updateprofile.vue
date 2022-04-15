@@ -7,7 +7,7 @@
     <!-- {{ form }} -->
     <!-- {{ tech_experience }} -->
 
-    <div class="eight q-my-lg">
+    <div class="eight">
       <h3><span class="login-text">Apply</span></h3>
     </div>
 
@@ -220,30 +220,31 @@
           </div>
           <span class="error">{{ highest_schoolErr }}</span>
         </div>
-
         <div class="input-wrap">
-          <label class="text-primary" for="">List Major </label>
+          <label class="text-primary" for=""
+            >Are you authorized to work in the United States?
+          </label>
           <br />
-
           <div class="input">
-            <i class="ri-book-fill q-mr-md text-primary"></i>
-            <input
-              type="text"
-              name="list_amjor"
-              v-model="list_amjor"
-              placeholder="list major"
-            />
+            <i class="ri-flag-fill q-mr-md text-primary"></i>
+
+            <select name="can_work_in_usa" v-model="can_work_in_usa" id="">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
           </div>
-          <span class="error">{{ listmajorErr }}</span>
+
+          <span class="error">{{ can_work_in_usaErr }}</span>
         </div>
       </div>
 
-      <div class="">
+      <div class="q-my-md">
         <div class="input-wrap">
           <label class="text-primary" for=""
             >How many hours per week are you able to commit to this program
             (dedicated to learning, doing assignments, and peer/instructor
-            interaction) over the seven months you are enrolled?
+            interaction) <br />
+            over the seven months you are enrolled?
           </label>
           <br />
 
@@ -264,21 +265,21 @@
           </div>
           <span class="error">{{ hours_per_weekErr }}</span>
         </div>
+
         <div class="input-wrap">
-          <label class="text-primary" for=""
-            >Are you authorized to work in the United States?
-          </label>
+          <label class="text-primary" for="">List Major </label>
           <br />
+
           <div class="input">
-            <i class="ri-flag-fill q-mr-md text-primary"></i>
-
-            <select name="can_work_in_usa" v-model="can_work_in_usa" id="">
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
+            <i class="ri-book-fill q-mr-md text-primary"></i>
+            <input
+              type="text"
+              name="list_amjor"
+              v-model="list_amjor"
+              placeholder="list major"
+            />
           </div>
-
-          <span class="error">{{ can_work_in_usaErr }}</span>
+          <span class="error">{{ listmajorErr }}</span>
         </div>
       </div>
 
@@ -694,7 +695,7 @@ export default {
 
           this.$q.notify({
             message: response.data.error,
-            color: "primary",
+            color: "secondary",
             position: "top",
           });
         });
@@ -723,7 +724,7 @@ p {
   height: 100%;
 }
 input::placeholder {
-  font-size: 12px;
+  font-size: 15px;
   opacity: 0.5;
 }
 .heeder {
@@ -765,11 +766,15 @@ input::placeholder {
   gap: 2rem;
   align-items: center;
 }
+
+.input-wrap {
+  margin: 2rem 0;
+}
 .input-wrap,
 select {
   width: 100%;
   margin-bottom: 2px;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
 }
 
 .error {

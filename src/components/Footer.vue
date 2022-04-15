@@ -4,7 +4,7 @@
     <mdb-container class="text-left">
       <mdb-row>
         <mdb-col sm="6">
-          <h5 class="title"><img src=".../../public/images/Logo2.svg" alt=""></h5>
+          <h5 class="title"><img src="/images/Logo2.svg" alt="" /></h5>
           <p>Increasing access to careers in tech.</p>
         </mdb-col>
         <mdb-col sm="3">
@@ -16,7 +16,7 @@
             <li class="list-unstyled"><a href="#!">About Us</a></li>
           </ul>
         </mdb-col>
-         <mdb-col sm="3">
+        <mdb-col sm="3">
           <h5 class="title">Links</h5>
           <ul>
             <li class="list-unstyled"><a href="#!">Contact Us</a></li>
@@ -27,25 +27,19 @@
         </mdb-col>
       </mdb-row>
     </mdb-container>
-
   </mdb-footer>
   <!-- Footer -->
 </template>
 
 <script>
-  import {
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+export default {
+  name: "FooterPage",
+  components: {
     mdbFooter,
     mdbContainer,
     mdbRow,
-    mdbCol
-  } from 'mdbvue';
-  export default {
-    name: 'FooterPage',
-    components: {
-      mdbFooter,
-      mdbContainer,
-      mdbRow,
-      mdbCol
-    }
-  }
+    mdbCol,
+  },
+};
 </script>

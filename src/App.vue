@@ -23,11 +23,21 @@ body {
   line-height: 1.6;
   color: #1a1a1a;
   font-size: 1.6rem;
-  overflow-x: hidden;
 }
 .container {
   width: 90%;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+.q-drawer {
+  opacity: 0.9;
 }
 </style>
