@@ -51,7 +51,7 @@
       </div>
 
       <div class="input-wrap">
-        <label class="text-primary" for="">Linkedin Profile_URL</label> <br />
+        <label class="text-primary" for="">Linkedin Profile URL</label> <br />
 
         <div class="input">
           <i class="ri-shield-user-fill q-mr-md text-primary"></i>
@@ -74,7 +74,7 @@
           <i class="ri-mail-line q-mr-md text-primary"></i>
 
           <input
-            
+
             type="email"
             v-model="form.city"
             placeholder="Enter your city"
@@ -83,7 +83,10 @@
       </div> -->
       <div class="two">
         <div class="input-wrap">
-          <label class="text-primary" for="">Timezone</label> <br />
+          <label class="text-primary" for=""
+            >Time zone (for assigning to a learning group)
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-time-fill q-mr-md text-primary"></i>
@@ -235,9 +238,14 @@
         </div>
       </div>
 
-      <div class="two">
+      <div class="">
         <div class="input-wrap">
-          <label class="text-primary" for="">Hours per week</label> <br />
+          <label class="text-primary" for=""
+            >How many hours per week are you able to commit to this program
+            (dedicated to learning, doing assignments, and peer/instructor
+            interaction) over the seven months you are enrolled?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-timer-fill q-mr-md text-primary"></i>
@@ -257,7 +265,10 @@
           <span class="error">{{ hours_per_weekErr }}</span>
         </div>
         <div class="input-wrap">
-          <label class="text-primary" for="">Can work in usa</label> <br />
+          <label class="text-primary" for=""
+            >Are you authorized to work in the United States?
+          </label>
+          <br />
           <div class="input">
             <i class="ri-flag-fill q-mr-md text-primary"></i>
 
@@ -273,7 +284,10 @@
 
       <div class="three">
         <div class="input-wrap">
-          <label class="text-primary" for="">learning_track</label> <br />
+          <label class="text-primary" for=""
+            >Which learning track are you considering?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-bookmark-fill q-mr-md text-primary"></i>
@@ -291,7 +305,10 @@
           <span class="error">{{ learning_trackErr }}</span>
         </div>
         <div class="input-wrap">
-          <label class="text-primary" for="">tech_experience</label> <br />
+          <label class="text-primary" for=""
+            >Which best describes your tech experience:
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-inbox-fill q-mr-md text-primary"></i>
@@ -315,7 +332,10 @@
           <span class="error">{{ tech_experienceErr }}</span>
         </div>
         <div class="input-wrap">
-          <label class="text-primary" for="">Referral</label> <br />
+          <label class="text-primary" for="">
+            How did you hear about us?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-funds-line q-mr-md text-primary"></i>
