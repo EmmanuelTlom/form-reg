@@ -13,18 +13,16 @@
     <!-- End of This div needs to be changed -->
     <div class="group">
       <div class="left">
-        <div class="text-red q-mb-sm">
-          <p class="text-dark q-mb-lg">
+        <div class=" q-mb-lg">
+          <p class="text-dark">
            Welcome! We are currently accepting enrolment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
           <ul>
-          <li>Self-identify as a historically underrepresented racial minority.</li>
-          <li>Be authorized to work in the United States.</li>
-          <li>Have a LinkedIn profile and photo.</li>
+          <li class="q-my-xs">Self-identify as a historically underrepresented racial minority.</li >
+          <li class="q-my-xs">Be authorized to work in the United States.</li>
+          <li class="q-my-xs">Have a LinkedIn profile and photo.</li>
           </ul>
-
-
           </p>
-          <p class="text-secondary q-mb-lg">
+          <p class="text-secondary q-mt-lg">
           Please provide the email linked to your LinkedIn account</p>
           <!-- <p
             v-if="errors.length"
@@ -44,7 +42,7 @@
               <i class="ri-mail-line q-mr-md text-primary"></i>
 
               <input
-                v-model="form.email"
+                v-model="email"
                 type="email"
                 placeholder="Enter your email"
               />
@@ -93,9 +91,9 @@ export default {
   data() {
     return {
       inputErr: "",
-      form: {
-        email: "",
-      },
+       enrolled: '',
+email:''
+      
     };
   },
   methods: {
@@ -121,14 +119,70 @@ export default {
           console.log(resp);
         })
         .catch(({ response }) => {
+          const emaill = this.email
           console.log(response);
-          if (response.data.error === "User Account Already Exists") {
-            this.$q.notify({
-              message: response.data.error,
+          axios.get(`https://linkedin-signin-prototype.herokuapp.com/api/users/${emaill}`).then((resp)=>{
+            let enrolled = resp.data.payload.enrolled
+            let name = resp.data.payload.name
+           if (response.data.error === "User Account Already Exists" && enrolled === false) {
+              localStorage.setItem(
+            "userDetails",
+            JSON.stringify(resp.data.payload)
+          );
+              this.$q.notify({
+              message: `Nice to have you back ${name}, complete your enrollment`,
               color: "secondary",
               position: "top",
             });
+            
+            this.$router.replace("/update");
+            
+            
+          }else if(response.data.error === "User Account Already Exists" && enrolled === true){
+            console.log(response);
+            this.inputErr ='You already enrolled, click learn more to know more about us and this program';
+            setTimeout(() => {
+              this.inputErr = "";
+            }, 4000);
+            this.$q.notify({
+              message: ' You already enrolled, click learn more to know more about us and this program',
+              color: "primary",
+              position: "top",
+            });}
+
+            
+          // } else{
+          //   this.inputErr = response.data.error;
+          //   setTimeout(() => {
+          //     this.inputErr = "";
+          //   }, 4000);
+          //   this.$q.notify({
+          //     message: response.data.error,
+          //     color: "secondary",
+          //     position: "bottom",
+          //   });
+          //   this.form=''
+          // }
+
+            this.email = ''
+          
+          })
+
+          if(response.data.error ){
+            console.log(response)
+            this.inputErr = response.data.error;
+            setTimeout(() => {
+              this.inputErr = "";
+            }, 4000);
+            this.$q.notify({
+              message: response.data.error,
+              color: "secondary",
+              position: "bottom",
+            });
+            this.email=''
+            return
           }
+          
           // if (response.data.error === "User Account Already Exists") {
           //   axios
           //     .get(
@@ -167,7 +221,7 @@ export default {
 
 <style scoped>
 p {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 .login-text {
   margin-top: -10px;

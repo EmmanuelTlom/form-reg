@@ -6,9 +6,9 @@
         <mdb-col sm="6">
           <h5 class="title"><img src="/images/Logo2.svg" alt="" /></h5>
           <p>Increasing access to careers in tech.</p>
-          <div style="display: flex;"
+
           <div class="social-links">
-  <a href="https://twitter.com/ReskillAmerica" target="_blank">
+            <!-- <a href="https://twitter.com/ReskillAmerica" target="_blank">
     <img alt="Twitter" rel="noreferrer" src="../../public/images/twitter.svg">
   </a>
   <a href="https://www.instagram.com/reskillamericans/" target="_blank">
@@ -25,8 +25,8 @@
   </a>
   <a href="https://www.facebook.com/reskillamericans" target="_blank">
     <img alt="Facebook" rel="noreferrer" src="../../public/images/facebook-f.svg">
-  </a>
-</div>
+  </a> -->
+          </div>
         </mdb-col>
         <mdb-col sm="3">
           <h5 class="title">Links</h5>

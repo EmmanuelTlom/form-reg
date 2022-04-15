@@ -681,10 +681,11 @@ export default {
         .then((resp) => {
           console.log(resp);
           this.$q.notify({
-            message: "Successfull",
+            message: "You have enrolled successfully",
             color: "primary",
             position: "top",
           });
+          this.$router.replace("/");
         })
         .catch(({ response }) => {
           console.log(response);

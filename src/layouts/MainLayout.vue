@@ -119,13 +119,45 @@
     </q-page-container>
 
     <q-footer class="bg-dark absolute-bottom text-white">
-      <div class="q-pa-md">
+      <div class="q-pa-md q-mt-lg">
         <div class="row items-center">
           <div class="col-md-4 col-sm-12 col-xs-12">
             <q-toolbar-title>
               <img class="logo" src="/images/Logo2.svg" alt="" />
             </q-toolbar-title>
             <p>Increasing access to careers in tech.</p>
+            <div class="socials">
+              <a href="https://twitter.com/ReskillAmerica" target="_blank">
+                <i class="ri-twitter-fill text-white"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/reskillamericans/"
+                target="_blank"
+              >
+                <i class="ri-instagram-fill text-white"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/reskill-americans"
+                target="_blank"
+              >
+                <i class="ri-linkedin-fill text-white"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/c/ReskillAmericans"
+                target="_blank"
+              >
+                <i class="ri-youtube-fill text-white"></i>
+              </a>
+              <a href="https://github.com/reskillamericans" target="_blank">
+                <i class="ri-github-fill text-white"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/reskillamericans"
+                target="_blank"
+              >
+                <i class="ri-facebook-fill text-white"></i>
+              </a>
+            </div>
           </div>
           <div class="col-md-4 col-sm-12 q-my-md col-xs-12">
             <!-- <h3 class="title text-secondary q-mb-md">Links</h3> -->
@@ -239,6 +271,15 @@ export default {
 .addbor {
   border: 1px solid #f4f4f4;
   padding: 0.55rem;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.socials i {
+  font-size: 3rem;
 }
 @media (max-width: 850px) {
   .menu {
