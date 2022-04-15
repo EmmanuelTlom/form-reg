@@ -15,9 +15,21 @@
       <div class="left">
         <div class="text-red q-mb-sm">
           <p class="text-primary q-mb-lg">
-            Kindly provide the email linked to your linkedin account for
-            enroll-access for the next cohort
+           Welcome! We are currently accepting enrolment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
+<ul>
+<li>Self-identify as a historically underrepresented racial minority. </li>
+<li>Be authorized to work in the United States.   </li>
+<li>Have a LinkedIn profile and photo</li>
+</ul>
+-
+
+-
+
+-
+
           </p>
+          <p class="text-primary q-mb-lg">
+Please provide the email linked to your LinkedIn account</p>
           <!-- <p
             v-if="errors.length"
             class="text-white q-mb-xl resp bg-primary q-px-lg q-py-md"
