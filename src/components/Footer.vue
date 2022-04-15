@@ -6,6 +6,27 @@
         <mdb-col sm="6">
           <h5 class="title"><img src="/images/Logo2.svg" alt="" /></h5>
           <p>Increasing access to careers in tech.</p>
+          <div style="display: flex;"
+          <div class="social-links">
+  <a href="https://twitter.com/ReskillAmerica" target="_blank">
+    <img alt="Twitter" rel="noreferrer" src="../../public/images/twitter.svg">
+  </a>
+  <a href="https://www.instagram.com/reskillamericans/" target="_blank">
+    <img alt="Instagram" rel="noreferrer" src="../../public/images/instagram.svg">
+  </a>
+  <a href="https://www.linkedin.com/company/reskill-americans" target="_blank">
+    <img alt="LinkedIn" rel="noreferrer" src="../../public/images/linkedin-in.svg">
+  </a>
+  <a href="https://www.youtube.com/c/ReskillAmericans" target="_blank">
+    <img alt="YouTube" rel="noreferrer" src="../../public/images/youtube.svg">
+  </a>
+  <a href="https://github.com/reskillamericans" target="_blank">
+    <img alt="GitHub" rel="noreferrer" src="../../public/images/github.svg">
+  </a>
+  <a href="https://www.facebook.com/reskillamericans" target="_blank">
+    <img alt="Facebook" rel="noreferrer" src="../../public/images/facebook-f.svg">
+  </a>
+</div>
         </mdb-col>
         <mdb-col sm="3">
           <h5 class="title">Links</h5>
