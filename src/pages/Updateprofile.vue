@@ -17,7 +17,7 @@
     <div class="error" v-if="inputErr">
       {{ inputErr }}
     </div>
-    <form id="form" @submit.prevent="submit">
+    <form @submit.prevent="submit">
       <div class="input-wrap">
         <label class="text-primary" for="">Name</label> <br />
 
@@ -788,6 +788,7 @@ select {
   border-radius: 5px;
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .input-wrap .input input,
