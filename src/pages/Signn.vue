@@ -15,7 +15,7 @@
       <div class="left">
         <div class=" q-mb-lg">
           <p class="text-dark">
-           Welcome! We are currently accepting enrolment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
+           Welcome! We are currently accepting enrollment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
           <ul>
           <li class="q-my-xs">Self-identify as a historically underrepresented racial minority.</li >
           <li class="q-my-xs">Be authorized to work in the United States.</li>
