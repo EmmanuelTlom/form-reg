@@ -4,7 +4,7 @@
       Login
     </p> -->
     <!-- <p class="text-dark">Welcome Back, Sirgappy</p> -->
-
+<!-- {{form.email}} -->
     <!-- This div needs to be changed -->
     <div class="eight q-my-lg">
       <h3><span class="login-text">Enroll</span></h3>
@@ -15,11 +15,11 @@
       <div class="left">
         <div class=" q-mb-lg">
           <p class="text-dark">
-           Welcome! We are currently accepting enrolment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
+           Welcome! We are currently accepting enrollment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
           <ul>
-          <li class="q-my-xs">Self-identify as a historically underrepresented racial minority.</li >
-          <li class="q-my-xs">Be authorized to work in the United States.</li>
-          <li class="q-my-xs">Have a LinkedIn profile and photo.</li>
+          <li class="q-my-xs"> - Self-identify as a historically underrepresented racial minority.</li >
+          <li class="q-my-xs"> - Be authorized to work in the United States.</li>
+          <li class="q-my-xs"> - Have a LinkedIn profile and photo.</li>
           </ul>
           </p>
           <p class="text-secondary q-mt-lg">
@@ -42,11 +42,14 @@
               <i class="ri-mail-line q-mr-md text-primary"></i>
 
               <input
-                v-model="email"
+              name="email"
+                v-model="form.email"
                 type="email"
                 placeholder="Enter your email"
               />
             </div>
+          <!-- <span class="error">{{ emailErr }}</span> -->
+
             <!-- <div class="error" v-if="inputErr">
               {{ inputErr }}
             </div> -->
@@ -80,20 +83,41 @@
 
 <script>
 import { useQuasar } from "quasar";
+import { useField, useForm } from "vee-validate";
 
 import axios from "axios";
 
 export default {
   setup() {
     const $q = useQuasar();
-    return {};
+    // const simpleSchema = {
+    //   email(value) {
+    //     if (value.length < 5) {
+    //       return "this field must contain at least 5 characters";
+    //     }
+    //     return true;
+
+    //     // validate email value and return messages...
+    //   },
+    //   }
+    //     useForm({
+    //   validationSchema: simpleSchema,
+    // });
+
+    // const { value: email, errorMessage: emailErr } = useField("email");
+
+    return {
+    
+    };
   },
   data() {
     return {
       inputErr: "",
        enrolled: '',
-email:''
-      
+
+      form: {
+        email: "",
+      },
     };
   },
   methods: {
@@ -119,9 +143,23 @@ email:''
           console.log(resp);
         })
         .catch(({ response }) => {
-          const emaill = this.email
+          if(response.data.error ){
+            console.log(response)
+            this.inputErr = response.data.error;
+            setTimeout(() => {
+              this.inputErr = "";
+            }, 4000);
+            this.$q.notify({
+              message: response.data.error,
+              color: "secondary",
+              position: "bottom",
+            });
+
+
+            
+          }
           console.log(response);
-          axios.get(`https://linkedin-signin-prototype.herokuapp.com/api/users/${emaill}`).then((resp)=>{
+          axios.get(`https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`).then((resp)=>{
             let enrolled = resp.data.payload.enrolled
             let name = resp.data.payload.name
            if (response.data.error === "User Account Already Exists" && enrolled === false) {
@@ -149,39 +187,10 @@ email:''
               color: "primary",
               position: "top",
             });}
+       
 
-            
-          // } else{
-          //   this.inputErr = response.data.error;
-          //   setTimeout(() => {
-          //     this.inputErr = "";
-          //   }, 4000);
-          //   this.$q.notify({
-          //     message: response.data.error,
-          //     color: "secondary",
-          //     position: "bottom",
-          //   });
-          //   this.form=''
-          // }
-
-            this.email = ''
           
           })
-
-          if(response.data.error ){
-            console.log(response)
-            this.inputErr = response.data.error;
-            setTimeout(() => {
-              this.inputErr = "";
-            }, 4000);
-            this.$q.notify({
-              message: response.data.error,
-              color: "secondary",
-              position: "bottom",
-            });
-            this.email=''
-            return
-          }
           
           // if (response.data.error === "User Account Already Exists") {
           //   axios
