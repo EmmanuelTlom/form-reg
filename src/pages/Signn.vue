@@ -4,7 +4,7 @@
       Login
     </p> -->
     <!-- <p class="text-dark">Welcome Back, Sirgappy</p> -->
-
+<!-- {{form.email}} -->
     <!-- This div needs to be changed -->
     <div class="eight q-my-lg">
       <h3><span class="login-text">Enroll</span></h3>
@@ -13,23 +13,17 @@
     <!-- End of This div needs to be changed -->
     <div class="group">
       <div class="left">
-        <div class="text-red q-mb-sm">
-          <p class="text-primary q-mb-lg">
-           Welcome! We are currently accepting enrolment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
-<ul>
-<li>Self-identify as a historically underrepresented racial minority. </li>
-<li>Be authorized to work in the United States.   </li>
-<li>Have a LinkedIn profile and photo</li>
-</ul>
--
-
--
-
--
-
+        <div class=" q-mb-lg">
+          <p class="text-dark">
+           Welcome! We are currently accepting enrollment for our 7-month software development training session that starts in June 2022. Please note, in order to enroll, you must:
+          <ul>
+          <li class="q-my-xs"> - Self-identify as a historically underrepresented racial minority.</li >
+          <li class="q-my-xs"> - Be authorized to work in the United States.</li>
+          <li class="q-my-xs"> - Have a LinkedIn profile and photo.</li>
+          </ul>
           </p>
-          <p class="text-primary q-mb-lg">
-Please provide the email linked to your LinkedIn account</p>
+          <p class="text-secondary q-mt-lg">
+          Please provide the email linked to your LinkedIn account</p>
           <!-- <p
             v-if="errors.length"
             class="text-white q-mb-xl resp bg-primary q-px-lg q-py-md"
@@ -48,11 +42,14 @@ Please provide the email linked to your LinkedIn account</p>
               <i class="ri-mail-line q-mr-md text-primary"></i>
 
               <input
+              name="email"
                 v-model="form.email"
                 type="email"
                 placeholder="Enter your email"
               />
             </div>
+          <!-- <span class="error">{{ emailErr }}</span> -->
+
             <!-- <div class="error" v-if="inputErr">
               {{ inputErr }}
             </div> -->
@@ -75,7 +72,7 @@ Please provide the email linked to your LinkedIn account</p>
             </div>
           </div> -->
 
-          <div class="button q-pt-xl text-center">
+          <div class="button q-py-xl q-mt-sm text-center">
             <q-btn type="submit" class="btn q-py-sm q-px-xl">Enroll</q-btn>
           </div>
         </form>
@@ -86,17 +83,38 @@ Please provide the email linked to your LinkedIn account</p>
 
 <script>
 import { useQuasar } from "quasar";
+import { useField, useForm } from "vee-validate";
 
 import axios from "axios";
 
 export default {
   setup() {
     const $q = useQuasar();
-    return {};
+    // const simpleSchema = {
+    //   email(value) {
+    //     if (value.length < 5) {
+    //       return "this field must contain at least 5 characters";
+    //     }
+    //     return true;
+
+    //     // validate email value and return messages...
+    //   },
+    //   }
+    //     useForm({
+    //   validationSchema: simpleSchema,
+    // });
+
+    // const { value: email, errorMessage: emailErr } = useField("email");
+
+    return {
+    
+    };
   },
   data() {
     return {
       inputErr: "",
+       enrolled: '',
+
       form: {
         email: "",
       },
@@ -110,12 +128,13 @@ export default {
           this.form
         )
         .then((resp) => {
+          console.log(resp);
           localStorage.setItem(
             "userDetails",
             JSON.stringify(resp.data.payload)
           );
           this.$q.notify({
-            message: "User successfully created",
+            message: "User successfully created, complete you enrollment",
             color: "primary",
             position: "top",
           });
@@ -124,33 +143,82 @@ export default {
           console.log(resp);
         })
         .catch(({ response }) => {
-          if (response.data.error === "User Account Already Exists") {
-            axios
-              .get(
-                `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`
-              )
-              .then((resp) => {
-                console.log(resp);
-
-                // alert(resp);
-                localStorage.setItem(
-                  "userDetails",
-                  JSON.stringify(resp.data.payload)
-                );
-                this.$q.notify({
-                  message: "Fill in your profile",
-                  color: "primary",
-                  position: "top",
-                });
-                this.$router.replace("/update");
-              });
-          } else {
-            console.log(response);
+          if(response.data.error ){
+            console.log(response)
             this.inputErr = response.data.error;
             setTimeout(() => {
               this.inputErr = "";
             }, 4000);
+            this.$q.notify({
+              message: response.data.error,
+              color: "secondary",
+              position: "bottom",
+            });
+
+
+            
           }
+          console.log(response);
+          axios.get(`https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`).then((resp)=>{
+            let enrolled = resp.data.payload.enrolled
+            let name = resp.data.payload.name
+           if (response.data.error === "User Account Already Exists" && enrolled === false) {
+              localStorage.setItem(
+            "userDetails",
+            JSON.stringify(resp.data.payload)
+          );
+              this.$q.notify({
+              message: `Nice to have you back ${name}, complete your enrollment`,
+              color: "secondary",
+              position: "top",
+            });
+            
+            this.$router.replace("/update");
+            
+            
+          }else if(response.data.error === "User Account Already Exists" && enrolled === true){
+            console.log(response);
+            this.inputErr ='You already enrolled, click learn more to know more about us and this program';
+            setTimeout(() => {
+              this.inputErr = "";
+            }, 4000);
+            this.$q.notify({
+              message: ' You already enrolled, click learn more to know more about us and this program',
+              color: "primary",
+              position: "top",
+            });}
+       
+
+          
+          })
+          
+          // if (response.data.error === "User Account Already Exists") {
+          //   axios
+          //     .get(
+          //       `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`
+          //     )
+          //     .then((resp) => {
+          //       console.log(resp);
+
+          //       // alert(resp);
+          //       localStorage.setItem(
+          //         "userDetails",
+          //         JSON.stringify(resp.data.payload)
+          //       );
+          //       this.$q.notify({
+          //         message: "Fill in your profile",
+          //         color: "primary",
+          //         position: "top",
+          //       });
+          //       this.$router.replace("/update");
+          //     });
+          // } else {
+          //   console.log(response);
+          //   this.inputErr = response.data.error;
+          //   setTimeout(() => {
+          //     this.inputErr = "";
+          //   }, 4000);
+          // }
         });
       //   localStorage.setItem("userDetails", JSON.stringify(resp.data.payload));
 
@@ -162,7 +230,7 @@ export default {
 
 <style scoped>
 p {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 .login-text {
   margin-top: -10px;
@@ -178,7 +246,7 @@ p {
   font-size: 1rem;
 }
 input::placeholder {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.5;
 }
 
@@ -187,8 +255,8 @@ input::placeholder {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  height: 80vh;
-  /* padding-top: 5rem; */
+  height: 100%;
+  padding-top: 7rem;
   max-width: 800px;
 }
 

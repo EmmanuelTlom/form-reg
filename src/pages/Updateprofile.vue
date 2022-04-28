@@ -5,8 +5,9 @@
     </p> -->
 
     <!-- {{ form }} -->
+    <!-- {{ tech_experience }} -->
 
-    <div class="eight q-my-lg">
+    <div class="eight">
       <h3><span class="login-text">Apply</span></h3>
     </div>
 
@@ -16,7 +17,7 @@
     <div class="error" v-if="inputErr">
       {{ inputErr }}
     </div>
-    <form @submit.prevent="submit" >
+    <form @submit.prevent="submit">
       <div class="input-wrap">
         <label class="text-primary" for="">Name</label> <br />
 
@@ -25,7 +26,8 @@
 
           <input
             disabled
-            type="email"
+            name="name"
+            type="text"
             v-model="form.name"
             placeholder="Ademola"
           />
@@ -40,10 +42,12 @@
           <input
             disabled
             type="email"
+            name="email"
             v-model="form.email"
             placeholder="Enter your email"
           />
         </div>
+        <span class="error">{{ emailError }}</span>
       </div>
 
       <div class="input-wrap">
@@ -55,7 +59,7 @@
           <input
             disabled
             type="text"
-            name=""
+            name="linkedin_url"
             id="te"
             v-model="form.linkedin_url"
           />
@@ -79,13 +83,22 @@
       </div> -->
       <div class="two">
         <div class="input-wrap">
-          <label class="text-primary" for="">Time zone (for assigning to a learning group) </label> <br />
+          <label class="text-primary" for=""
+            >Time zone (for assigning to a learning group)
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-time-fill q-mr-md text-primary"></i>
 
-            <input type="text" v-model="form.timezone" placeholder="Timezone" />
+            <input
+              type="text"
+              name="timezone"
+              v-model="timezone"
+              placeholder="Timezone"
+            />
           </div>
+          <span class="error">{{ timezoneErr }}</span>
         </div>
         <div class="input-wrap">
           <label class="text-primary" for="">Phone Number</label> <br />
@@ -95,10 +108,12 @@
 
             <input
               type="text"
-              v-model="form.phone"
+              name="phone"
+              v-model="phone"
               placeholder="Phone number"
             />
           </div>
+          <span class="error">{{ phoneErr }}</span>
         </div>
       </div>
 
@@ -110,7 +125,7 @@
           <div class="input">
             <i class="ri-apps-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.representation" id="">
+            <select name="representation" v-model="representation" id="">
               <option value="native american">Native American</option>
               <option value="alaska native">Alaska Native</option>
               <option value="black">Black</option>
@@ -119,6 +134,7 @@
               <option value="southeast asian">Southeast Asian</option>
             </select>
           </div>
+          <span class="error">{{ representationErr }}</span>
         </div>
         <div class="input-wrap">
           <label class="text-primary" for="">Gender</label>
@@ -127,13 +143,14 @@
           <div class="input">
             <i class="ri-group-line q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.gender" id="">
+            <select name="gender" v-model="gender" id="">
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="non binary">Non Binary</option>
               <option value="prefer not to say">Prefer not to say</option>
             </select>
           </div>
+          <span class="error">{{ genderErr }}</span>
         </div>
       </div>
       <div class="two">
@@ -144,7 +161,7 @@
           <div class="input">
             <i class="ri-calendar-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.age_group" id="">
+            <select name="age_group" v-model="age_group" id="">
               <option value="16 - 17">16 - 17</option>
               <option value="18 - 24">18 - 24</option>
               <option value="25 - 34">25 - 34</option>
@@ -153,6 +170,7 @@
               <option value="prefer not to say">Prefer not to say</option>
             </select>
           </div>
+          <span class="error">{{ age_groupErr }}</span>
         </div>
         <div class="input-wrap">
           <label class="text-primary" for="">Employment status</label>
@@ -161,53 +179,79 @@
           <div class="input">
             <i class="ri-star-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.employment_status" id="">
+            <select name="employment_status" v-model="employment_status" id="">
               <option value="Employed full-time">Employed full-time</option>
               <option value="Employed part-time">Employed part-time</option>
               <option value="Self-employed ">Self-employed</option>
               <option value="Unemployed">Unemployed</option>
             </select>
           </div>
+          <span class="error"> {{ employment_statusErr }}</span>
         </div>
       </div>
-      <div class="input-wrap">
-        <label class="text-primary" for=""
-          >Highest level of school completed:
-        </label>
-        <br />
-
-        <div class="input">
-          <i class="ri-book-fill q-mr-md text-primary"></i>
-
-          <select name="gender" v-model="form.highest_school" id="">
-            <option value="No diploma">No diploma</option>
-            <option value="High school ">High school</option>
-            <option value="College – no degree">College – no degree</option>
-            <option value="Trade/technical/vocational training">
-              Trade/technical/vocational training
-            </option>
-            <option value="Associate Degree">Associate Degree</option>
-
-            <option value="Bachelor’s Degree">
-              Bachelor’s Degree (list major)
-            </option>
-
-            <option value="Master’s Degree">
-              Master’s Degree (list major)
-            </option>
-            <option value="Post-graduate study">Post-graduate study</option>
-          </select>
-        </div>
-      </div>
-
       <div class="two">
         <div class="input-wrap">
-          <label class="text-primary" for="">How many hours per week are you able to commit to this program (dedicated to learning, doing assignments, and peer/instructor interaction) over the seven months you are enrolled? </label> <br />
+          <label class="text-primary" for=""
+            >Highest level of school completed:
+          </label>
+          <br />
+
+          <div class="input">
+            <i class="ri-book-fill q-mr-md text-primary"></i>
+
+            <select name="highest_school" v-model="highest_school" id="">
+              <option value="No diploma">No diploma</option>
+              <option value="High school ">High school</option>
+              <option value="College – no degree">College – no degree</option>
+              <option value="Trade/technical/vocational training">
+                Trade/technical/vocational training
+              </option>
+              <option value="Associate Degree">Associate Degree</option>
+
+              <option value="Bachelor’s Degree">
+                Bachelor’s Degree (list major)
+              </option>
+
+              <option value="Master’s Degree">
+                Master’s Degree (list major)
+              </option>
+              <option value="Post-graduate study">Post-graduate study</option>
+            </select>
+          </div>
+          <span class="error">{{ highest_schoolErr }}</span>
+        </div>
+        <div class="input-wrap">
+          <label class="text-primary" for=""
+            >Are you authorized to work in the United States?
+          </label>
+          <br />
+          <div class="input">
+            <i class="ri-flag-fill q-mr-md text-primary"></i>
+
+            <select name="can_work_in_usa" v-model="can_work_in_usa" id="">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <span class="error">{{ can_work_in_usaErr }}</span>
+        </div>
+      </div>
+
+      <div class="q-my-md">
+        <div class="input-wrap">
+          <label class="text-primary" for=""
+            >How many hours per week are you able to commit to this program
+            (dedicated to learning, doing assignments, and peer/instructor
+            interaction) <br />
+            over the seven months you are enrolled?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-timer-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.hours_per_week" id="">
+            <select name="hours_per_week" v-model="hours_per_week" id="">
               <option value="15 hours per week">
                 15 hours per week (minimum)
               </option>
@@ -219,28 +263,37 @@
               </option>
             </select>
           </div>
+          <span class="error">{{ hours_per_weekErr }}</span>
         </div>
-        <div class="input-wrap">
-          <label class="text-primary" for="">Are you authorized to work in the United States? </label> <br />
-          <div class="input">
-            <i class="ri-flag-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.can_work_in_usa" id="">
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
+        <div class="input-wrap">
+          <label class="text-primary" for="">List Major </label>
+          <br />
+
+          <div class="input">
+            <i class="ri-book-fill q-mr-md text-primary"></i>
+            <input
+              type="text"
+              name="list_amjor"
+              v-model="list_amjor"
+              placeholder="list major"
+            />
           </div>
+          <span class="error">{{ listmajorErr }}</span>
         </div>
       </div>
 
       <div class="three">
         <div class="input-wrap">
-          <label class="text-primary" for="">Which learning track are you considering? </label> <br />
+          <label class="text-primary" for=""
+            >Which learning track are you considering?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-bookmark-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.learning_track" id="">
+            <select name="learning_track" v-model="learning_track" id="">
               <option value="Full-Stack Web Development">
                 Full-Stack Web Development
               </option>
@@ -250,14 +303,18 @@
               </option>
             </select>
           </div>
+          <span class="error">{{ learning_trackErr }}</span>
         </div>
         <div class="input-wrap">
-          <label class="text-primary" for="">Which best describes your tech experience: </label> <br />
+          <label class="text-primary" for=""
+            >Which best describes your tech experience:
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-inbox-fill q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.tech_experience" id="">
+            <select name="tech_experience" v-model="tech_experience" id="">
               <option value="No experience">
                 No experience – This will be completely new information.
               </option>
@@ -273,14 +330,18 @@
               </option>
             </select>
           </div>
+          <span class="error">{{ tech_experienceErr }}</span>
         </div>
         <div class="input-wrap">
-          <label class="text-primary" for=""> How did you hear about us? </label> <br />
+          <label class="text-primary" for="">
+            How did you hear about us?
+          </label>
+          <br />
 
           <div class="input">
             <i class="ri-funds-line q-mr-md text-primary"></i>
 
-            <select name="gender" v-model="form.referral" id="">
+            <select name="referral" v-model="referral" id="">
               <option value="Social media">Social media</option>
               <option value="Google or another search engine">
                 Google or another search engine
@@ -292,6 +353,7 @@
               <option value="Others">Others</option>
             </select>
           </div>
+          <span class="error">{{ referralErr }}</span>
         </div>
       </div>
 
@@ -307,6 +369,7 @@
 import { useQuasar, QSpinnerFacebook } from "quasar";
 import { onBeforeUnmount } from "vue";
 import { QSpinnerGears } from "quasar";
+import { useField, useForm } from "vee-validate";
 import axios from "axios";
 
 export default {
@@ -321,7 +384,215 @@ export default {
       }
     });
 
+    // function validateField(value) {
+    //   if (!value) {
+    //     return "this field is required";
+    //   }
+
+    //   if (value.length < 8) {
+    //     return "this field must contain at least 8 characters";
+    //   }
+
+    //   return true;
+    // }
+
+    // const { value, errorMessage } = useField("timezone", validateField);
+    // Define a validation schema
+    const simpleSchema = {
+      timezone(value) {
+        if (!value) {
+          return "this field is required";
+        }
+        return true;
+
+        // validate email value and return messages...
+      },
+      phone(value) {
+        if (value.length < 8) {
+          return "this field must contain at least 8 characters";
+        }
+
+        return true;
+        // validate name value and return messages...
+      },
+      representation(value) {
+        if (!value) {
+          return "this field is required";
+        }
+        return true;
+
+        // validate name value and return messages...
+      },
+      age_group(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+      gender(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+      can_work_in_usa(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+      employment_status(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+
+      highest_school(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+
+      list_amjor(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+
+      hours_per_week(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+
+      learning_track(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+
+      location(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+      referral(value) {
+        if (!value) {
+          return "this field is required";
+        }
+
+        return true;
+
+        // validate name value and return messages...
+      },
+      tech_experience(value) {
+        if (!value) {
+          return "this field is required";
+        }
+        return true;
+
+        // validate name value and return messages...
+      },
+    };
+    // Create a form context with the validation schema
+    useForm({
+      validationSchema: simpleSchema,
+    });
+    // No need to define rules for fields
+    const { value: timezone, errorMessage: timezoneErr } = useField("timezone");
+    const { value: phone, errorMessage: phoneErr } = useField("phone");
+
+    const { value: representation, errorMessage: representationErr } =
+      useField("representation");
+    const { value: age_group, errorMessage: age_groupErr } =
+      useField("age_group");
+    const { value: gender, errorMessage: genderErr } = useField("gender");
+
+    const { value: can_work_in_usa, errorMessage: can_work_in_usaErr } =
+      useField("can_work_in_usa");
+    const { value: employment_status, errorMessage: employment_statusErr } =
+      useField("employment_status");
+    const { value: highest_school, errorMessage: highest_schoolErr } =
+      useField("highest_school");
+    const { value: list_major, errorMessage: listmajorErr } =
+      useField("list_amjor");
+
+    const { value: hours_per_week, errorMessage: hours_per_weekErr } =
+      useField("hours_per_week");
+    const { value: learning_track, errorMessage: learning_trackErr } =
+      useField("learning_track");
+
+    // const { value: location, errorMessage: locationErr } = useField("location");
+
+    const { value: referral, errorMessage: referralErr } = useField("referral");
+    const { value: tech_experience, errorMessage: tech_experienceErr } =
+      useField("tech_experience");
+    // No need to define rules for fields
+
     return {
+      timezone,
+      timezoneErr,
+      phone,
+      phoneErr,
+      representation,
+      representationErr,
+      age_group,
+      age_groupErr,
+      can_work_in_usa,
+      can_work_in_usaErr,
+
+      employment_status,
+      employment_statusErr,
+      gender,
+      genderErr,
+      highest_school,
+      highest_schoolErr,
+      list_major,
+      listmajorErr,
+      hours_per_week,
+      hours_per_weekErr,
+      learning_track,
+      learning_trackErr,
+      // location,
+      // locationErr,
+      referral,
+      referralErr,
+      tech_experience,
+      tech_experienceErr,
+
       showLoading() {
         $q.loading.show({
           spinner: QSpinnerFacebook,
@@ -361,26 +632,74 @@ export default {
     userData(key) {
       return JSON.parse(localStorage.getItem("userDetails"))[key];
     },
-    async submit() {
-      //   const formData = new FormData(document.querySelector("#form"));
+    submit() {
+      const timezone = this.timezone;
+      const name = this.form.name;
+      const email = this.form.email;
+      const linkedin_url = this.form.linkedin_url;
+      const learning_track = this.learning_track;
+      const referral = this.referral;
+      const representation = this.representation;
+      const employment_status = this.employment_status;
+      // const number = this.number;
+      const tech_experience = this.tech_experience;
+      const hours_per_week = this.hours_per_week;
+      const age_group = this.age_group;
+      const highest_school = this.highest_school;
+      const list_major = this.list_major;
 
-      let resp = await axios
+      const can_work_in_usa = this.can_work_in_usa;
+      const gender = this.gender;
+      const phone = this.phone;
+
+      const formData = {
+        timezone,
+        name,
+        email,
+        linkedin_url,
+        learning_track,
+        referral,
+        representation,
+        employment_status,
+        employment_status,
+        hours_per_week,
+        age_group,
+        highest_school,
+        list_major,
+        can_work_in_usa,
+        gender,
+        phone,
+        tech_experience,
+      };
+      console.log(formData);
+
+      axios
         .put(
-          `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`
+          `https://linkedin-signin-prototype.herokuapp.com/api/users/${this.form.email}`,
+          formData
         )
+        .then((resp) => {
+          console.log(resp);
+          this.$q.notify({
+            message: "You have enrolled successfully",
+            color: "primary",
+            position: "top",
+          });
+          this.$router.replace("/");
+        })
         .catch(({ response }) => {
+          console.log(response);
           this.inputErr = response.data.error;
           setTimeout(() => {
             this.inputErr = "";
-          }, 4000);
-        });
-      this.$q.notify({
-        message: "Application Successful",
-        color: "primary",
-        position: "top",
-      });
+          }, 7000);
 
-      console.log(resp);
+          this.$q.notify({
+            message: response.data.error,
+            color: "secondary",
+            position: "top",
+          });
+        });
     },
   },
 };
@@ -406,7 +725,7 @@ p {
   height: 100%;
 }
 input::placeholder {
-  font-size: 12px;
+  font-size: 15px;
   opacity: 0.5;
 }
 .heeder {
@@ -448,11 +767,15 @@ input::placeholder {
   gap: 2rem;
   align-items: center;
 }
+
+.input-wrap {
+  margin: 2rem 0;
+}
 .input-wrap,
 select {
   width: 100%;
   margin-bottom: 2px;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
 }
 
 .error {
@@ -471,6 +794,7 @@ select {
   border-radius: 5px;
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .input-wrap .input input,
