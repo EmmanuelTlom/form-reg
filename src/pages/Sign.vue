@@ -12,33 +12,6 @@
       <label for="email">Email</label>
       <input type="email" name="" id="sign" v-model="form.email" />
     </div>
-
-    <!-- <div class="input">
-          <label for="name">name</label>
-          <input type="text" name="" id="name" v-model="form.name">
-      </div>
-      <div class="input">
-          <label for="email">password</label>
-          <input type="password" name="" id="pass" v-model="form.password">
-      </div> -->
-    <!-- <div class="input">
-          <label for="pass">passwordC</label>
-          <input type="password" name="" id="pass" v-model="form.password_confirmation">
-      </div>
-
-
-      <div class="input">
-          <label for="phone">phone</label>
-          <input type="tel" name="" id="" v-model="form.phone_number">
-      </div>
-      <div class="input">
-          <label for="usertype">usertype</label>
-          <input type="text" name="" id="type" v-model="form.user_type">
-      </div>
-      <div class="input">
-          <label for="username">username</label>
-          <input type="text" name="" id="username" v-model="form.username">
-      </div> -->
     <button type="submit">submit</button>
   </form>
 </template>
